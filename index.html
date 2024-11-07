@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Registration Form</title>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <link rel="stylesheet" type="text/css" href="responsiveIndex.css" />
+  </head>
+  <body>
+    
+    
+    <div class="registrationForm">
+      <h1 style="text-align: center; margin-bottom: 20px;">Registration Form</h1>
+      <form name="Sheet1" method="post" id="form">
+        <div class="details">
+          <section class="sec">
+            <div class="form-data">
+              <label for="name">Name</label>
+              <input
+                type="text"
+                name="clientName"
+                placeholder="Enter Your Name"
+                value=""
+                required
+              />
+            </div>
+            <div class="form-data">
+              <label for="email">Email</label>
+              <input
+                type="email"
+                name="clientEmail"
+                placeholder="Enter Your Email"
+                required
+              />
+            </div>
+            <div class="form-data">
+              <label for="phone">Phone</label>
+              <input
+                type="number"
+                name="clientPhone"
+                placeholder="Enter Your Number"
+                required
+              />
+            </div>
+            
+          </section>
+          <section class="sec">
+           <div class="form-data">
+            <label for="age">Age</label>
+            <input type="number" placeholder="Enter Your Age" name="clientAge" required />
+           </div>
+           <div class="form-data">
+            <label for="weight">Weight</label>
+            <input type="number" placeholder="Enter Your Weight" name="clientWeight" required />
+           </div>
+           <div class="form-data">
+            <label for="medicalCondition">Medical Condition</label>
+            <select name="clientMedicalCondition" required>
+              <option value="">Select Any One Option</option>
+              <option value="Yes">Yes</option>
+              <option value="No">No</option>
+            </select>
+           </div>
+          </section>
+        </div>
+        <div class="details z">
+          <h2 style="text-align: center; font-weight: bold; margin-bottom: 20px;">Address Information</h2>
+          <div class="form-data">
+            <label for="city">City</label>
+            <input type="text" placeholder="Enter Your City" name="clientCity" required />
+          </div>
+          <div class="form-data">
+            <label for="state">State</label>
+            <input type="text" placeholder="Enter Your State" name="clientState" required />
+          </div>
+          <div class="form-data">
+            <label for="pincode">Pincode</label>
+            <input type="number" placeholder="Enter Your Pincode" name="clientPincode" required />
+          </div>
+          <div class="form-data">
+            <label for="country">Country</label>
+            <input type="text" placeholder="Enter Your Country" name="clientCountry" required />
+          </div>
+        </div>
+        <div class="details z">
+          <h2 style="text-align: center; font-weight: bold; margin-bottom: 20px;">Emergency Contact</h2>
+          <div class="form-data">
+            <label for="eName">Name</label>
+            <input type="text" placeholder="Enter Your Name" name="clientEname" required />
+          </div>
+          <div class="form-data">
+            <label for="Ephone">Phone</label>
+            <input type="number" placeholder="Enter Your Number" name="clientEnumber" required />
+          </div>
+          <div class="form-data">
+            <label for="Eemail">Email</label>
+            <input type="email" placeholder="Enter Your Email" name="clientEemail" required />
+          </div>
+         
+        </div>
+       
+        <div class="details z">
+          <div class="form-data">
+            <label for="location">Location</label>
+            <select name="clientLocation" required>
+              <option value="">Select Any One Option</option>
+              <option value="Sam, Rajesthan">Sam, Rajesthan</option>
+            </select>
+          </div>
+          <div class="form-data">
+            <label for="activity">Activity</label>
+            <select name="clientActivity" required>
+              <option value="">Select Any One Option</option>
+              <option value="Parasailing">Parasailing</option>
+              <option value="Paragliding">Paragliding</option>
+              <option value="Paramotoring">Paramotoring</option>
+              <option value="Hot Air Ballooning">Hot Air Ballooning</option>
+            </select>
+          </div>
+          <div class="form-data">
+            <label for="camera">You Want Camera</label>
+            <select name="clientCamera" required>
+              <option value="">Select Any One Option</option>
+              <option value="Yes">Yes</option>
+              <option value="No">No</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-data">
+          <button class="btn" type="submit">Proceed</button>
+        </div>
+      
+      </form>
+      
+    </div>
+    
+
+    <script type="module" src="script.js"></script>
+  </body>
+</html>

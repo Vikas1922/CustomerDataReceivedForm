@@ -1,0 +1,56 @@
+@media only screen and (min-width: 0px) and (max-width: 480px){
+    h1{
+        text-align: center;
+    }
+    .form-heading{
+        width: 100%;
+    }
+
+    h4{
+        text-align: center;
+    }
+
+    .sec2, .details{
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+}
+
+@media only screen and (min-width: 481px) and (max-width: 768px){
+    .form-heading{
+        width: 100%;
+    }
+
+    h4{
+        text-align: center;
+    }
+
+    .sec2, .details{
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+    .sec{
+        width: 100%;
+    }
+}
+
+@media only screen and (min-width: 769px) and (max-width: 1279px){
+    .form-heading{
+        width: 100%;
+    }
+
+    h4{
+        text-align: center;
+    }
+
+    .sec2, .details{
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+    .sec{
+        width: 100%;
+    }
+}
+
