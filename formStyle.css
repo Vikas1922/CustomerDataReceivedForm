@@ -165,8 +165,8 @@ button{
     display: none;
   }
 
-/* @media (pointer: coarse) {
+@media (pointer: coarse) {
     body{
         overflow: hidden;
     }
-} */
+} 
