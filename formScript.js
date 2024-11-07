@@ -132,7 +132,7 @@ pdfBtn.addEventListener('click',(e)=>{
   // const pdf = document.querySelector('#pdf');
   var opt = {
     margin:       0,
-    filename:     `${input[0].value}.pdf`,
+    filename:     `${input[1].value}.pdf`,
     image:        { type: 'jpeg', quality: 0.98 },
     html2canvas:  { scale: 2 },
     jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' }
