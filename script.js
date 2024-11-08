@@ -72,13 +72,13 @@ select[3].addEventListener('change',(e)=>{
   localStorage.setItem('camera',e.target.value);
 });
 
-let url = 'https://script.google.com/macros/s/AKfycbzGGHlZlrhYeb9uua_SUBM6i8GfCrUfwk7PLSaQObWTezydgzVjsAil6oMf42jJhNOh/exec';
+let url = 'https://script.google.com/macros/s/AKfycbxN0scVvvUEnycg9cZt341oDB06awwIgMTZyHE3O0kGM20bU8Iq9_j-0yBLnkedUV0S/exec';
 
 let form = document.querySelector('#form');
 form.addEventListener('submit', (e) => {
   e.preventDefault();  // Prevent the default form submission
 
- const formData = new FormData(event.target);
+const formData = new FormData(event.target);
   const formDataObject = {};
 
   // Convert FormData to a plain object
@@ -86,7 +86,7 @@ form.addEventListener('submit', (e) => {
     formDataObject[key] = value;
   });
 
-  // Send data to Google Apps Script using fetch
+  // Send the form data to Google Apps Script via fetch
   fetch(url, {
     method: 'POST',
     body: new URLSearchParams(formDataObject), // Send data as URLSearchParams
@@ -98,17 +98,14 @@ form.addEventListener('submit', (e) => {
     return response.json(); // Parse the JSON response
   })
   .then(data => {
-    // If the response from Google Apps Script is successful
+    // If data submission is successful, redirect to form.html
     if (data.message === 'Data Saved Successfully') {
-      // Redirect to form.html after successful submission
       window.location.href = './form.html';
     } else {
-      // Show an error message if something went wrong
       alert('There was an issue submitting the form. Please try again later.');
     }
   })
   .catch(error => {
-    // Catch any errors during the fetch process
     console.error('Error submitting form:', error);
     alert('There was an issue submitting the form. Please try again later.');
   });
