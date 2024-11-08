@@ -72,26 +72,43 @@ select[3].addEventListener('change',(e)=>{
   localStorage.setItem('camera',e.target.value);
 });
 
-let url = 'https://script.google.com/macros/s/AKfycbyUrA548GRvGNqLeFi7L64QiXB_ghw2V4ZLO1_Hayu8CNkqFwNVwHLijugIbIUoyyOJ/exec';
+let url = 'https://script.google.com/macros/s/AKfycbybFcSJl08HHC-_7TlmB4tZ47fK3o4_FsaIPxZdNC6IApo5oxbJyi21GLRNv9bkcnMa/exec';
 
 let form = document.querySelector('#form');
 form.addEventListener('submit', (e) => {
   e.preventDefault();  // Prevent the default form submission
 
-  let d = new FormData(form);
-  
-  // Make the fetch request to submit the form data
+  const formData = new FormData(event.target);
+
+  // Convert the form data to a JSON object
+  const formDataObject = {};
+  formData.forEach((value, key) => {
+    formDataObject[key] = value;
+  });
+
+  // Send the data to the Google Apps Script endpoint (using fetch)
   fetch(url, {
-  method: 'POST',
-  body: d,
-  mode: 'no-cors'  // Bypass CORS for testing (will not handle response)
-})
-.then(() => {
-  window.location.href = './form.html';  // Proceed to the next page
-})
-.catch((error) => {
-  console.log('Error submitting form:', error);
-});
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'  // Specify the content type
+    },
+    body: JSON.stringify(formDataObject)  // Send the data as JSON
+  })
+  .then(response => {
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
+    }
+    return response.json();
+  })
+  .then(data => {
+    // Handle the response here (you can redirect or show a success message)
+    console.log('Success:', data);
+    window.location.href = './form.html'; // Redirect to the form page after success
+  })
+  .catch(error => {
+    console.error('Error:', error);
+    alert('There was an issue with submitting the form. Please try again later.');
+  });
 
 });
 
