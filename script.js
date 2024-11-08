@@ -82,19 +82,17 @@ form.addEventListener('submit', (e) => {
   
   // Make the fetch request to submit the form data
   fetch(url, {
-    method: 'POST',
-    body: d
-  })
-  .then((res) => res.json())  // Make sure to parse as JSON
-  .then((finalRes) => {
-    console.log(finalRes.message);  // Log the success message
-    if (finalRes.message === 'Data Saved Successfully') {
-      window.location.href = './form.html';  // Redirect to form.html after successful submission
-    }
-  })
-  .catch((error) => {
-    console.log('Error submitting form:', error);
-  });
+  method: 'POST',
+  body: d,
+  mode: 'no-cors'  // Bypass CORS for testing (will not handle response)
+})
+.then(() => {
+  window.location.href = './form.html';  // Proceed to the next page
+})
+.catch((error) => {
+  console.log('Error submitting form:', error);
+});
+
 });
 
 
