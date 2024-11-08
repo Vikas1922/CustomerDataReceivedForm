@@ -72,27 +72,30 @@ select[3].addEventListener('change',(e)=>{
   localStorage.setItem('camera',e.target.value);
 });
 
-let url = 'https://script.google.com/macros/s/AKfycbxm4kU2nl-FyONPO8aIXSDbLl38QjFyF6L5lvGvszfVgfm8qb4hXamkKmRj2G9tOjq9/exec';
+let url = 'https://script.google.com/macros/s/AKfycbxLWOVZDJgUYCBHCqC8ARTJwG0iJv_qRLG5Di4v9kAdUtddR2I7lh8Oevy3qcgH0txG/exec';
 let form = document.querySelector('#form');
+
 form.addEventListener('submit', (e) => {
-  e.preventDefault(); // Prevent the default form submission
+    e.preventDefault();  // Prevent the default form submission
 
-  let d = new FormData(form);
-
-  // Send POST request
-  fetch(url, {
-    method: 'POST',
-    body: d
-  })
-  .then((res) => res.json())  // Use .json() instead of .text() to properly handle the JSON response
-  .then((finalRes) => {
-    console.log(finalRes.message);
-    window.location.href = './form.html'; // Redirect after success
-  })
-  .catch((error) => {
-    console.error('Error submitting form:', error);
-  });
+    let formData = new FormData(form);
+    
+    // Use fetch to submit form data
+    fetch(url, {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => response.text()) // Get the response text
+    .then(finalRes => {
+        console.log(finalRes);  // Log the response from Google Apps Script
+        window.location.href = './form.html';  // Redirect after successful form submission
+    })
+    .catch(error => {
+        console.error("Error submitting form:", error);
+        // Handle error (optional)
+    });
 });
+
 
 
 // btn[0].addEventListener('click',()=>{
