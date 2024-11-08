@@ -72,13 +72,12 @@ select[3].addEventListener('change',(e)=>{
   localStorage.setItem('camera',e.target.value);
 });
 
-const url = 'https://script.google.com/macros/s/AKfycbwWFTJT7IvxA6iARfGPKhGULdiqwoW785xfhP8ymAFBAjAX0x-Q6ed9I5tLNxd_52ykAA/exec';
+const url = 'https://script.google.com/macros/s/AKfycbwWFTJT7IvxA6iARfGPKhGULdiqwoW785xfhP8ymAFBAjAX0x-Q6ed9I5tLNxd_52ykAA/exec'; // Correct URL
 const form = document.querySelector('#form');
 
 form.addEventListener('submit', async (e) => {
-  e.preventDefault(); // Prevent the form from submitting normally
+  e.preventDefault(); // Prevent form's default submission
 
-  // Collect form data manually into an object for JSON
   const data = {
     clientName: form.clientName.value,
     clientEmail: form.clientEmail.value,
@@ -99,29 +98,27 @@ form.addEventListener('submit', async (e) => {
   };
 
   try {
-    // Send the request as JSON
     const response = await fetch(url, {
       method: 'POST',
-      
       headers: {
-        'Content-Type': 'application/json', // Set JSON content-type
-        'Accept': 'application/json'
+        'Content-Type': 'application/json'
       },
       body: JSON.stringify(data)
     });
 
-    // Check for a successful response before parsing
-    if (response.ok) {
-      const result = await response.json(); // Parse JSON response
-      console.log(result.message); // Should log "Data Saved Successfully"
-      window.location.href = './form.html'; // Redirect on success
-    } else {
+    // Handle the response as JSON
+    if (!response.ok) {
       console.error("Server error:", response.status);
+    } else {
+      const result = await response.json(); // Now we can safely parse the JSON
+      console.log(result.message); // Log success message from the response
+      window.location.href = './form.html'; // Redirect to form.html after successful submission
     }
   } catch (error) {
-    console.error("Error submitting form:", error);
+    console.error("Network or Server error:", error);
   }
 });
+
 // btn[0].addEventListener('click',()=>{
 //   btn[0].remove();
 //   let clear = document.createElement('a');
