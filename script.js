@@ -72,13 +72,13 @@ select[3].addEventListener('change',(e)=>{
   localStorage.setItem('camera',e.target.value);
 });
 
-let url = 'https://script.google.com/macros/s/AKfycbzit9Yk68mPGuImRzDFozaD2wFrxJvnO0uRdQ0CTvM0e6mSPkiuQMAqsbc7j97oN_IK/exec';
+let url = 'https://script.google.com/macros/s/AKfycbzGGHlZlrhYeb9uua_SUBM6i8GfCrUfwk7PLSaQObWTezydgzVjsAil6oMf42jJhNOh/exec';
 
 let form = document.querySelector('#form');
 form.addEventListener('submit', (e) => {
   e.preventDefault();  // Prevent the default form submission
 
-  const formData = new FormData(event.target);
+ const formData = new FormData(event.target);
   const formDataObject = {};
 
   // Convert FormData to a plain object
