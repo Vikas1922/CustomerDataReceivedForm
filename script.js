@@ -98,12 +98,7 @@ const formData = new FormData(event.target);
     return response.json(); // Parse the JSON response
   })
   .then(data => {
-    // If data submission is successful, redirect to form.html
-    // if (data.message === 'Data Saved Successfully') {
-    //   window.location.href = './form.html';
-    // } else {
-    //   alert('There was an issue submitting the form. Please try again later.');
-    // }
+    
     window.location.href = './form.html';
   })
   .catch(error => {
