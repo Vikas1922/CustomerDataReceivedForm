@@ -72,52 +72,28 @@ select[3].addEventListener('change',(e)=>{
   localStorage.setItem('camera',e.target.value);
 });
 
-const url = 'https://script.google.com/macros/s/AKfycbxaSFE2FIqrjiYO7s8ePy0pi2Uk9ZDJ34lmsMKPu64x_O7IaBTtCWgIZC1i5q6kJtO5UQ/exec'; // Correct URL
-const form = document.querySelector('#form');
+let url = 'https://script.google.com/macros/s/AKfycbzZ3TvG5hsIaAHCHr2xfNyGSrA0Ll3MDmYw-uu6w5wfga02ZZSsXaS16DRCVx88aLCJ/exec';
+let form = document.querySelector('#form');
+form.addEventListener('submit', (e) => {
+  e.preventDefault(); // Prevent the default form submission
 
-form.addEventListener('submit', async (e) => {
-  e.preventDefault(); // Prevent form's default submission
+  let d = new FormData(form);
 
-  const data = {
-    clientName: form.clientName.value,
-    clientEmail: form.clientEmail.value,
-    clientPhone: form.clientPhone.value,
-    clientAge: form.clientAge.value,
-    clientWeight: form.clientWeight.value,
-    clientMedicalCondition: form.clientMedicalCondition.value,
-    clientCity: form.clientCity.value,
-    clientState: form.clientState.value,
-    clientPincode: form.clientPincode.value,
-    clientCountry: form.clientCountry.value,
-    clientEname: form.clientEname.value,
-    clientEnumber: form.clientEnumber.value,
-    clientEemail: form.clientEemail.value,
-    clientLocation: form.clientLocation.value,
-    clientActivity: form.clientActivity.value,
-    clientCamera: form.clientCamera.value
-  };
-
-  try {
-    const response = await fetch(url, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(data)
-    });
-
-    // Handle the response as JSON
-    if (!response.ok) {
-      console.error("Server error:", response.status);
-    } else {
-      const result = await response.json(); // Now we can safely parse the JSON
-      console.log(result.message); // Log success message from the response
-      window.location.href = './form.html'; // Redirect to form.html after successful submission
-    }
-  } catch (error) {
-    console.error("Network or Server error:", error);
-  }
+  // Send POST request
+  fetch(url, {
+    method: 'POST',
+    body: d
+  })
+  .then((res) => res.json())  // Use .json() instead of .text() to properly handle the JSON response
+  .then((finalRes) => {
+    console.log(finalRes.message);
+    window.location.href = './form.html'; // Redirect after success
+  })
+  .catch((error) => {
+    console.error('Error submitting form:', error);
+  });
 });
+
 
 // btn[0].addEventListener('click',()=>{
 //   btn[0].remove();
