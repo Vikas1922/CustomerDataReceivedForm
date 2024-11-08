@@ -72,20 +72,56 @@ select[3].addEventListener('change',(e)=>{
   localStorage.setItem('camera',e.target.value);
 });
 
-let url = 'https://script.google.com/macros/s/AKfycbwEfqPZoLTnmWNM6c2e6rkLtR2LZtjphCSuWROlHx3HpGfUBCI1b0o426VunKbGxnNakg/exec';
-let form =document.querySelector('#form');
-form.addEventListener('submit',(e)=>{
-  let d = new FormData(form);
-  fetch(url,{
-    method: 'POST',
-    body: d
-  }).then((res)=>res.text())
-  .then((finalRes)=>console.log(finalRes))
-  window.location.href = './form.html';
-  e.preventDefault();
+const url = 'https://script.google.com/macros/s/AKfycbwWFTJT7IvxA6iARfGPKhGULdiqwoW785xfhP8ymAFBAjAX0x-Q6ed9I5tLNxd_52ykAA/exec';
+const form = document.querySelector('#form');
 
- 
-})
+form.addEventListener('submit', async (e) => {
+  e.preventDefault(); // Prevent the form from submitting normally
+
+  // Collect form data manually into an object for JSON
+  const data = {
+    clientName: form.clientName.value,
+    clientEmail: form.clientEmail.value,
+    clientPhone: form.clientPhone.value,
+    clientAge: form.clientAge.value,
+    clientWeight: form.clientWeight.value,
+    clientMedicalCondition: form.clientMedicalCondition.value,
+    clientCity: form.clientCity.value,
+    clientState: form.clientState.value,
+    clientPincode: form.clientPincode.value,
+    clientCountry: form.clientCountry.value,
+    clientEname: form.clientEname.value,
+    clientEnumber: form.clientEnumber.value,
+    clientEemail: form.clientEemail.value,
+    clientLocation: form.clientLocation.value,
+    clientActivity: form.clientActivity.value,
+    clientCamera: form.clientCamera.value
+  };
+
+  try {
+    // Send the request as JSON
+    const response = await fetch(url, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: {
+        'Content-Type': 'application/json', // Set JSON content-type
+        'Accept': 'application/json'
+      },
+      body: JSON.stringify(data)
+    });
+
+    // Check for a successful response before parsing
+    if (response.ok) {
+      const result = await response.json(); // Parse JSON response
+      console.log(result.message); // Should log "Data Saved Successfully"
+      window.location.href = './form.html'; // Redirect on success
+    } else {
+      console.error("Server error:", response.status);
+    }
+  } catch (error) {
+    console.error("Error submitting form:", error);
+  }
+});
 // btn[0].addEventListener('click',()=>{
 //   btn[0].remove();
 //   let clear = document.createElement('a');
