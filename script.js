@@ -72,16 +72,16 @@ select[3].addEventListener('change',(e)=>{
   localStorage.setItem('camera',e.target.value);
 });
 
-let url = 'https://script.google.com/macros/s/AKfycbxYUKdI_UJurr5kQyKH0-U4kgsBjgSlLuyyvLAsnA6mSKfmwbM80M_Wz-GRY3qq7O6S/exec';
+let url = 'https://script.google.com/macros/s/AKfycbzit9Yk68mPGuImRzDFozaD2wFrxJvnO0uRdQ0CTvM0e6mSPkiuQMAqsbc7j97oN_IK/exec';
 
 let form = document.querySelector('#form');
 form.addEventListener('submit', (e) => {
   e.preventDefault();  // Prevent the default form submission
 
   const formData = new FormData(event.target);
-
-  // Convert the form data to an object
   const formDataObject = {};
+
+  // Convert FormData to a plain object
   formData.forEach((value, key) => {
     formDataObject[key] = value;
   });
@@ -91,22 +91,27 @@ form.addEventListener('submit', (e) => {
     method: 'POST',
     body: new URLSearchParams(formDataObject), // Send data as URLSearchParams
   })
-  .then(response => response.json()) // Parse the JSON response
+  .then(response => {
+    if (!response.ok) {
+      throw new Error('Failed to submit form');
+    }
+    return response.json(); // Parse the JSON response
+  })
   .then(data => {
+    // If the response from Google Apps Script is successful
     if (data.message === 'Data Saved Successfully') {
-      // If the data was saved successfully, redirect to form.html
+      // Redirect to form.html after successful submission
       window.location.href = './form.html';
     } else {
-      // If the response indicates an error
-      alert('There was an issue with submitting the form. Please try again later.');
+      // Show an error message if something went wrong
+      alert('There was an issue submitting the form. Please try again later.');
     }
   })
   .catch(error => {
-    // Catch any errors that occur during the fetch
+    // Catch any errors during the fetch process
     console.error('Error submitting form:', error);
-    alert('There was an issue with submitting the form. Please try again later.');
+    alert('There was an issue submitting the form. Please try again later.');
   });
-
 });
 
 
