@@ -103,7 +103,8 @@ const formData = new FormData(event.target);
   })
   .catch(error => {
     console.error('Error submitting form:', error);
-    alert('There was an issue submitting the form. Please try again later.');
+    // alert('There was an issue submitting the form. Please try again later.');
+    window.location.href = './form.html';
   });
 });
 
