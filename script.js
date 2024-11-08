@@ -72,7 +72,7 @@ select[3].addEventListener('change',(e)=>{
   localStorage.setItem('camera',e.target.value);
 });
 
-let url = 'https://script.google.com/macros/s/AKfycbybFcSJl08HHC-_7TlmB4tZ47fK3o4_FsaIPxZdNC6IApo5oxbJyi21GLRNv9bkcnMa/exec';
+let url = 'https://script.google.com/macros/s/AKfycbxYUKdI_UJurr5kQyKH0-U4kgsBjgSlLuyyvLAsnA6mSKfmwbM80M_Wz-GRY3qq7O6S/exec';
 
 let form = document.querySelector('#form');
 form.addEventListener('submit', (e) => {
@@ -80,33 +80,30 @@ form.addEventListener('submit', (e) => {
 
   const formData = new FormData(event.target);
 
-  // Convert the form data to a JSON object
+  // Convert the form data to an object
   const formDataObject = {};
   formData.forEach((value, key) => {
     formDataObject[key] = value;
   });
 
-  // Send the data to the Google Apps Script endpoint (using fetch)
+  // Send data to Google Apps Script using fetch
   fetch(url, {
     method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'  // Specify the content type
-    },
-    body: JSON.stringify(formDataObject)  // Send the data as JSON
+    body: new URLSearchParams(formDataObject), // Send data as URLSearchParams
   })
-  .then(response => {
-    if (!response.ok) {
-      throw new Error('Network response was not ok');
-    }
-    return response.json();
-  })
+  .then(response => response.json()) // Parse the JSON response
   .then(data => {
-    // Handle the response here (you can redirect or show a success message)
-    console.log('Success:', data);
-    window.location.href = './form.html'; // Redirect to the form page after success
+    if (data.message === 'Data Saved Successfully') {
+      // If the data was saved successfully, redirect to form.html
+      window.location.href = './form.html';
+    } else {
+      // If the response indicates an error
+      alert('There was an issue with submitting the form. Please try again later.');
+    }
   })
   .catch(error => {
-    console.error('Error:', error);
+    // Catch any errors that occur during the fetch
+    console.error('Error submitting form:', error);
     alert('There was an issue with submitting the form. Please try again later.');
   });
 
