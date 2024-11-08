@@ -72,7 +72,7 @@ select[3].addEventListener('change',(e)=>{
   localStorage.setItem('camera',e.target.value);
 });
 
-const url = 'https://script.google.com/macros/s/AKfycbwWFTJT7IvxA6iARfGPKhGULdiqwoW785xfhP8ymAFBAjAX0x-Q6ed9I5tLNxd_52ykAA/exec'; // Correct URL
+const url = 'https://script.google.com/macros/s/AKfycbzGTt65hIQFLcwu2HaI8SNKnd67nNQtn2AyHMAGXw9oaQZlQu8S6Oj02zDbARJpyNUBsQ/exec'; // Correct URL
 const form = document.querySelector('#form');
 
 form.addEventListener('submit', async (e) => {
