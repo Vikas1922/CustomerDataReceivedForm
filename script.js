@@ -73,28 +73,30 @@ select[3].addEventListener('change',(e)=>{
 });
 
 let url = 'https://script.google.com/macros/s/AKfycbyUrA548GRvGNqLeFi7L64QiXB_ghw2V4ZLO1_Hayu8CNkqFwNVwHLijugIbIUoyyOJ/exec';
+
 let form = document.querySelector('#form');
-
 form.addEventListener('submit', (e) => {
-    e.preventDefault();  // Prevent the default form submission
+  e.preventDefault();  // Prevent the default form submission
 
-    let formData = new FormData(form);
-    
-    // Use fetch to submit form data
-    fetch(url, {
-        method: 'POST',
-        body: formData
-    })
-    .then(response => response.text()) // Get the response text
-    .then(finalRes => {
-        console.log(finalRes);  // Log the response from Google Apps Script
-        window.location.href = './form.html';  // Redirect after successful form submission
-    })
-    .catch(error => {
-        console.error("Error submitting form:", error);
-        // Handle error (optional)
-    });
+  let d = new FormData(form);
+  
+  // Make the fetch request to submit the form data
+  fetch(url, {
+    method: 'POST',
+    body: d
+  })
+  .then((res) => res.json())  // Make sure to parse as JSON
+  .then((finalRes) => {
+    console.log(finalRes.message);  // Log the success message
+    if (finalRes.message === 'Data Saved Successfully') {
+      window.location.href = './form.html';  // Redirect to form.html after successful submission
+    }
+  })
+  .catch((error) => {
+    console.log('Error submitting form:', error);
+  });
 });
+
 
 
 
