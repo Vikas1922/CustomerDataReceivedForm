@@ -28,50 +28,53 @@ input[4].addEventListener('change',(e)=>{
   localStorage.setItem('weight',e.target.value);
 });
 
-select[0].addEventListener('change',(e)=>{
-  localStorage.setItem('medical',e.target.value);
+input[5].addEventListener('change',(e)=>{
+  localStorage.setItem('medical1',e.target.value);
+})
+  
+input[6].addEventListener('change',(e)=>{
+  localStorage.setItem('medical2',e.target.value);
 })
 
-input[5].addEventListener('change',(e)=>{
+input[7].addEventListener('change',(e)=>{
   localStorage.setItem('city',e.target.value);
 });
 
-input[6].addEventListener('change',(e)=>{
+input[8].addEventListener('change',(e)=>{
   localStorage.setItem('state',e.target.value);
 });
 
-input[7].addEventListener('change',(e)=>{
+input[9].addEventListener('change',(e)=>{
   localStorage.setItem('pincode',e.target.value);
 });
 
-input[8].addEventListener('change',(e)=>{
+input[10].addEventListener('change',(e)=>{
   localStorage.setItem('country',e.target.value);
 });
 
-input[9].addEventListener('change',(e)=>{
+input[11].addEventListener('change',(e)=>{
   localStorage.setItem('eName',e.target.value);
 });
 
-input[10].addEventListener('change',(e)=>{
+input[12].addEventListener('change',(e)=>{
   localStorage.setItem('ePhone',e.target.value);
 });
 
-input[11].addEventListener('change',(e)=>{
+input[13].addEventListener('change',(e)=>{
   localStorage.setItem('eEmail',e.target.value);
 });
 
-select[1].addEventListener('change',(e)=>{
+select[0].addEventListener('change',(e)=>{
   localStorage.setItem('location',e.target.value);
 })
 
-select[2].addEventListener('change',(e)=>{
+select[1].addEventListener('change',(e)=>{
   localStorage.setItem('activity',e.target.value);
 })
 
-select[3].addEventListener('change',(e)=>{
+select[2].addEventListener('change',(e)=>{
   localStorage.setItem('camera',e.target.value);
 });
-
 let url = 'https://script.google.com/macros/s/AKfycbxN0scVvvUEnycg9cZt341oDB06awwIgMTZyHE3O0kGM20bU8Iq9_j-0yBLnkedUV0S/exec';
 
 let form = document.querySelector('#form');
