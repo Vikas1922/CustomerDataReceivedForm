@@ -49,21 +49,32 @@ input[1].value = localStorage.getItem('name');
   
   input[5].value = localStorage.getItem('weight');
   
-  select[0].value = localStorage.getItem('medical')
+  let checkVal = 'true';
 
-  input[6].value = localStorage.getItem('city')
-  
-  input[7].value = localStorage.getItem('state')
-  
-  input[8].value = localStorage.getItem('pincode')
-  
-  input[9].value = localStorage.getItem('country')
+  if(checkVal == localStorage.getItem('medical1')){
+    input[6].checked = true;
+  }
 
-  input[10].value = localStorage.getItem('eName')
+  if(checkVal == localStorage.getItem('medical2')){
+    input[7].checked = true;
+  }
+
+  input[8].value = localStorage.getItem('city')
   
-  input[11].value = localStorage.getItem('ePhone')
+  input[9].value = localStorage.getItem('state')
   
-  input[12].value = localStorage.getItem('eEmail')
+  input[10].value = localStorage.getItem('pincode')
+  
+  input[11].value = localStorage.getItem('country')
+
+  input[12].value = localStorage.getItem('eName')
+  
+  input[13].value = localStorage.getItem('ePhone')
+  
+  input[14].value = localStorage.getItem('eEmail')
+
+
+
 
 
 
