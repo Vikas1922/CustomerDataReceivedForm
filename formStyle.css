@@ -166,6 +166,20 @@ button{
     display: none;
   }
 
+ .medical{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.medical span{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 190px;
+
+}
+
 @media (pointer: coarse) {
     .signature-pad{
         overflow: hidden;
